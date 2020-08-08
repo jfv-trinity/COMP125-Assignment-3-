@@ -154,7 +154,7 @@ functions for website go here
                 AboutContent();
                 break;
         }
-
+        loadParagraph();
         loadFooter();
     }
 
@@ -407,6 +407,35 @@ functions for website go here
         });
     }
 
+    function loadParagraph()
+    {
+        console.info("Paragraphs Loading...");
+     
+
+        // step 1 - creates the XHR object
+        let XHR = new XMLHttpRequest();
+
+        // step 2 - configures the message
+        XHR.open("GET", "paragraphs.json");
+
+        // step 3 - Executes the request
+        XHR.send();
+
+        XHR.addEventListener("readystatechange", function(){
+            if((XHR.readyState === 4) && (XHR.status === 200))
+            {
+                let paragraph = document.getElementsByTagName("paragraph")[0];
+
+                let paragraphData = XHR.responseText;
+                console.info(paragraphData);
+
+                paragraph.innerHTML = paragraphData[0];
+              
+            }
+        });
+
+        
+    }
 
     // named function
     function Start()

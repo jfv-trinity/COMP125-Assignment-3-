@@ -1,0 +1,20 @@
+{
+    "paragraphs":
+    [
+        {
+            "Welcome": "Welcome to my lounge! My name is Joseph Volpe and i am an aspiring programmer/animator."
+        },
+        {
+            "Quote": "its the small details that matter."
+        },
+        {
+            "ProjectsHeader": "Not currently working on a specific project. Currently interested in: Making a simple adobe animation, creating a web application that interacts with PC backgrounds (lacking knowledge to start this prject), and making a unique discord bot that reads data and gives appropriate response to the user."
+        },
+        {
+            "DiscordProject": "I have been interested in working with discord bots for awhile since they provide an excellent template to build off of. This will also allow me to quickly share my work, with others who are interested in using what i make or just easy access for me to use privately."
+        },
+        {
+            "AnimationProject": "I have been wanting to do an animation for awhile and think it would be a small project i could incorporate into other things i want to do in the future."
+        }
+    ]
+}
