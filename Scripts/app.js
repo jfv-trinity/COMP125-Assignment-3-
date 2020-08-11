@@ -154,7 +154,6 @@ functions for website go here
                 AboutContent();
                 break;
         }
-        loadParagraph();
         loadFooter();
     }
 
@@ -179,6 +178,8 @@ functions for website go here
                 let headerData = XHR.responseText;
 
                 header.innerHTML = headerData;
+
+                loadParagraph("Welcome");
 
                 setPageContent("Home");
 
@@ -244,6 +245,7 @@ functions for website go here
                     <td>${contact.lastName}</td>
                     <td>${contact.contactNumber}</td>
                     <td>${contact.emailAddress}</td>
+                    <td>${contact.shortMessage}</td>
                     `
                     tableBody.appendChild(row);
                 }
@@ -299,6 +301,8 @@ functions for website go here
                 let mainData = XHR.responseText;
 
                 main.innerHTML = mainData;
+                
+                loadParagraph("Projects");
             }
         });
     }
@@ -351,6 +355,8 @@ functions for website go here
                 let mainData = XHR.responseText;
 
                 main.innerHTML = mainData;
+
+                loadParagraph("Welcome");
             }
         });
     }
@@ -407,10 +413,9 @@ functions for website go here
         });
     }
 
-    function loadParagraph()
+    function loadParagraph(page)
     {
-        console.info("Paragraphs Loading...");
-     
+        console.info("AddressBook Loading...");
 
         // step 1 - creates the XHR object
         let XHR = new XMLHttpRequest();
@@ -421,20 +426,46 @@ functions for website go here
         // step 3 - Executes the request
         XHR.send();
 
+        // step 4 - register the readystate event 
         XHR.addEventListener("readystatechange", function(){
             if((XHR.readyState === 4) && (XHR.status === 200))
             {
-                let paragraph = document.getElementsByTagName("paragraph")[0];
 
-                let paragraphData = XHR.responseText;
-                console.info(paragraphData);
+                let dataFile = JSON.parse(XHR.responseText);
+                let paragraphs = dataFile.paragraphs;
 
-                paragraph.innerHTML = paragraphData[0];
-              
-            }
-        });
+                console.log(paragraphs);
 
-        
+                let paragraphList = [];
+                // let contactList = new Array<objects.Contact>();
+
+                for (const record of paragraphs) 
+                {
+                    let text = new anotherobject.Paragraph();
+                    text.setParagraph(record);
+                    paragraphList.push(text);
+                    console.log(text)
+                }
+
+                console.log(paragraphList);
+
+                let paragraphBody = document.getElementById("paragraphBody");
+                for (const paragraph of paragraphList) 
+                {
+                    if (paragraph.page == page) {
+                        let row = document.createElement('p');
+                        row.innerHTML = 
+                        `
+                        ${paragraph.text}
+                        `
+                        paragraphBody.appendChild(row);
+                    }
+                }
+
+                
+
+               
+        }});
     }
 
     // named function
